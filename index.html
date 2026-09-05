@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeSurf Academy | Digital Safety & Security Awareness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0F4C81;
+      --primary-dark: #0a3560;
+      --accent: #00D4AA;
+      --accent-hover: #00b894;
+      --light: #F5F7FA;
+      --white: #ffffff;
+      --dark: #1E293B;
+      --gray: #64748B;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--dark);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #1a6fb3 100%);
+      color: var(--white);
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,212,170,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--primary);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--white);
+      padding: 3rem 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-item p {
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* Topics Section */
+    .topics {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .topic-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .topic-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .topic-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .topic-card h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .topic-card p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .topic-link {
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s ease;
+    }
+
+    .topic-link:hover {
+      gap: 0.8rem;
+    }
+
+    /* Interactive Section */
+    .interactive {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 5rem 0;
+    }
+
+    .interactive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .interactive-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .interactive-card h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Password Checker */
+    .password-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .strength-meter {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .strength-text {
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .tips-list {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .tips-list h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .tips-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      color: var(--gray);
+    }
+
+    .tips-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Quiz */
+    .quiz-question {
+      margin-bottom: 2rem;
+    }
+
+    .quiz-question h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .quiz-option {
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--white);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent);
+      background: #f0fdf9;
+    }
+
+    .quiz-option.selected {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .quiz-option.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .quiz-option.incorrect {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .quiz-feedback {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .quiz-feedback.success {
+      background: #f0fdf4;
+      color: var(--success);
+      display: block;
+    }
+
+    .quiz-feedback.error {
+      background: #fef2f2;
+      color: var(--danger);
+      display: block;
+    }
+
+    .quiz-score {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary), #1a6fb3);
+      color: var(--white);
+      border-radius: 16px;
+      display: none;
+    }
+
+    .quiz-score h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .quiz-score .badge {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Checklist Generator */
+    .checklist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .checklist-form label {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .checklist-form select,
+    .checklist-form input {
+      padding: 0.8rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .checklist-form select:focus,
+    .checklist-form input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .checklist-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #f0fdf9;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+      display: none;
+    }
+
+    .checklist-result h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .checklist-result ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      color: var(--dark);
+    }
+
+    .checklist-result li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Resources Section */
+    .resources {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .resource-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .resource-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .resource-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .resource-card p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col ul li a {
+      color: #cbd5e1;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #334155;
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 0.8rem 0;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid,
+      .interactive-grid,
+      .resources-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <span class="logo-icon">🛡️</span>
+      SafeSurf Academy
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#interactive">Interactive</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="hero">
+    <div class="container hero-content">
+      <h1>Learn. Protect. Thrive Online.</h1>
+      <p>Your complete guide to staying safe and secure in the digital world</p>
+      <div class="hero-buttons">
+        <a href="#topics" class="btn btn-primary">Start Learning</a>
+        <a href="#interactive" class="btn btn-secondary">Try Interactive Tools</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item animate">
+          <h3>95%</h3>
+          <p>of breaches start with human error</p>
+        </div>
+        <div class="stat-item animate">
+          <h3>3.4M</h3>
+          <p>phishing emails sent daily</p>
+        </div>
+        <div class="stat-item animate">
+          <h3>80%</h3>
+          <p>can be prevented with basic awareness</p>
+        </div>
+        <div class="stat-item animate">
+          <h3>24/7</h3>
+          <p>online threats never sleep</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Section -->
+  <section id="topics" class="topics">
+    <div class="container">
+      <div class="section-title">
+        <h2>Essential Safety Topics</h2>
+        <p>Master the fundamentals of digital safety with our comprehensive learning modules</p>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-card animate">
+          <div class="topic-icon">🔐</div>
+          <h3>Password Power</h3>
+          <p>Learn to create unbreakable passwords, use password managers effectively, and enable multi-factor authentication for maximum security.</p>
+          <a href="#interactive" class="topic-link">Try Password Checker →</a>
+        </div>
+        <div class="topic-card animate">
+          <div class="topic-icon">🎣</div>
+          <h3>Phishing & Scams</h3>
+          <p>Identify fake emails, suspicious messages, and social engineering tactics before they compromise your personal information.</p>
+          <a href="#interactive" class="topic-link">Take Phishing Quiz →</a>
+        </div>
+        <div class="topic-card animate">
+          <div class="topic-icon">🛡️</div>
+          <h3>Privacy Settings</h3>
+          <p>Take control of your digital footprint by mastering privacy settings on social media, browsers, and mobile applications.</p>
+          <a href="#resources" class="topic-link">Download Guide →</a>
+        </div>
+        <div class="topic-card animate">
+          <div class="topic-icon">🌐</div>
+          <h3>Safe Browsing</h3>
+          <p>Navigate the web safely by understanding HTTPS, recognizing malicious websites, and protecting yourself on public Wi-Fi.</p>
+          <a href="#resources" class="topic-link">Get Checklist →</a>
+        </div>
+        <div class="topic-card animate">
+          <div class="topic-icon">📱</div>
+          <h3>Device Security</h3>
+          <p>Keep your devices secure with regular updates, antivirus protection, secure backups, and smart security practices.</p>
+          <a href="#resources" class="topic-link">Security Tips →</a>
+        </div>
+        <div class="topic-card animate">
+          <div class="topic-icon">👣</div>
+          <h3>Digital Footprint</h3>
+          <p>Understand the long-term impact of your online activities and learn to manage your digital reputation effectively.</p>
+          <a href="#resources" class="topic-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Section -->
+  <section id="interactive" class="interactive">
+    <div class="container">
+      <div class="section-title">
+        <h2>Interactive Learning Zone</h2>
+        <p>Test your knowledge and practice real-world security skills with our interactive tools</p>
+      </div>
+      <div class="interactive-grid">
+        <!-- Password Strength Checker -->
+        <div class="interactive-card animate">
+          <h3>🔐 Password Strength Checker</h3>
+          <input type="text" class="password-input" id="passwordInput" placeholder="Type a password to check..." oninput="checkPassword()">
+          <div class="strength-meter">
+            <div class="strength-bar" id="strengthBar"></div>
+          </div>
+          <div class="strength-text" id="strengthText">Enter a password</div>
+          <div class="tips-list">
+            <h4>💡 Tips for Strong Passwords:</h4>
+            <ul>
+              <li>Use at least 12 characters</li>
+              <li>Mix uppercase, lowercase, numbers, and symbols</li>
+              <li>Avoid personal information</li>
+              <li>Use unique passwords for each account</li>
+              <li>Consider using a password manager</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phishing Quiz -->
+        <div class="interactive-card animate">
+          <h3>🎣 Phishing Detection Quiz</h3>
+          <div id="quizContainer">
+            <div class="quiz-question" id="question1">
+              <h4>Question 1: You receive an email from "support@paypa1.com" asking you to verify your account by clicking a link. What should you do?</h4>
+              <div class="quiz-options">
+                <div class="quiz-option" onclick="selectOption(1, 0)">Click the link to verify my account</div>
+                <div class="quiz-option" onclick="selectOption(1, 1)">Delete the email and report as phishing</div>
+                <div class="quiz-option" onclick="selectOption(1, 2)">Reply asking if they're legitimate</div>
+              </div>
+              <div class="quiz-feedback" id="feedback1"></div>
+            </div>
+            <div class="quiz-question" id="question2" style="display:none;">
+              <h4>Question 2: Your bank texts you about a suspicious transaction with a link to "confirm" it. Best action?</h4>
+              <div class="quiz-options">
+                <div class="quiz-option" onclick="selectOption(2, 0)">Click the link immediately</div>
+                <div class="quiz-option" onclick="selectOption(2, 1)">Call the bank using their official number</div>
+                <div class="quiz-option" onclick="selectOption(2, 2)">Forward to friends as a warning</div>
+              </div>
+              <div class="quiz-feedback" id="feedback2"></div>
+            </div>
+            <div class="quiz-question" id="question3" style="display:none;">
+              <h4>Question 3: A website asks for your password via email to "update your security". You should:</h4>
+              <div class="quiz-options">
+                <div class="quiz-option" onclick="selectOption(3, 0)">Provide the password immediately</div>
+                <div class="quiz-option" onclick="selectOption(3, 1)">Never share passwords via email</div>
+                <div class="quiz-option" onclick="selectOption(3, 2)">Ask them to call you instead</div>
+              </div>
+              <div class="quiz-feedback" id="feedback3"></div>
+            </div>
+          </div>
+          <div class="quiz-score" id="quizScore">
+            <div class="badge">🏆</div>
+            <h3 id="scoreText">Quiz Complete!</h3>
+            <p id="badgeText"></p>
+            <button class="btn btn-secondary" onclick="resetQuiz()" style="margin-top:1rem;">Try Again</button>
+          </div>
+        </div>
+
+        <!-- Security Checklist Generator -->
+        <div class="interactive-card animate">
+          <h3>✅ Personal Security Checklist</h3>
+          <div class="checklist-form">
+            <label for="userRole">What best describes you?</label>
+            <select id="userRole">
+              <option value="">Select your role...</option>
+              <option value="student">Student</option>
+              <option value="parent">Parent</option>
+              <option value="professional">Working Professional</option>
+              <option value="senior">Senior Citizen</option>
+              <option value="business">Small Business Owner</option>
+            </select>
+            <button class="btn btn-primary" onclick="generateChecklist()">Generate My Checklist</button>
+          </div>
+          <div class="checklist-result" id="checklistResult">
+            <h4>📋 Your Personalized Security Checklist:</h4>
+            <ul id="checklistItems"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="resources">
+    <div class="container">
+      <div class="section-title">
+        <h2>Free Resources</h2>
+        <p>Download practical guides and tools to enhance your digital safety</p>
+      </div>
+      <div class="resources-grid">
+        <div class="resource-card animate">
+          <div class="resource-icon">📄</div>
+          <h3>Security Checklist PDF</h3>
+          <p>10-point personal security checklist for everyday protection</p>
+          <button class="btn-download" onclick="alert('Download started!')">Download</button>
+        </div>
+        <div class="resource-card animate">
+          <div class="resource-icon">👨‍👩‍👧‍👦</div>
+          <h3>Family Safety Agreement</h3>
+          <p>Printable template for establishing digital safety rules at home</p>
+          <button class="btn-download" onclick="alert('Download started!')">Download</button>
+        </div>
+        <div class="resource-card animate">
+          <div class="resource-icon">📊</div>
+          <h3>Phishing Email Guide</h3>
+          <p>Visual guide to identifying and reporting phishing attempts</p>
+          <button class="btn-download" onclick="alert('Download started!')">Download</button>
+        </div>
+        <div class="resource-card animate">
+          <div class="resource-icon">🔗</div>
+          <h3>Trusted Tools List</h3>
+          <p>Curated list of recommended security tools and resources</p>
+          <button class="btn-download" onclick="alert('Download started!')">Download</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>SafeSurf Academy</h3>
+          <p style="color: #cbd5e1; margin-bottom: 1rem;">Empowering everyone to navigate the digital world safely and confidently.</p>
+          <div style="font-size: 1.5rem;">🛡️ 🌐 🔐</div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#topics">Topics</a></li>
+            <li><a href="#interactive">Interactive</a></li>
+            <li><a href="#resources">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Topics</h3>
+          <ul>
+            <li><a href="#topics">Password Security</a></li>
+            <li><a href="#topics">Phishing Prevention</a></li>
+            <li><a href="#topics">Privacy Settings</a></li>
+            <li><a href="#topics">Safe Browsing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li>📧 info@safesurf.academy</li>
+            <li>📱 +1 (555) 123-4567</li>
+            <li>📍 Digital Safety Hub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SafeSurf Academy. All rights reserved. | Stay safe online! 🛡️</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    // Password Strength Checker
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value;
+      const strengthBar = document.getElementById('strengthBar');
+      const strengthText = document.getElementById('strengthText');
+      
+      let strength = 0;
+      const checks = {
+        length: password.length >= 12,
+        lowercase: /[a-z]/.test(password),
+        uppercase: /[A-Z]/.test(password),
+        numbers: /\d/.test(password),
+        symbols: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+      };
+
+      Object.values(checks).forEach(check => {
+        if (check) strength++;
+      });
+
+      const percentages = [0, 20, 40, 60, 80, 100];
+      const colors = ['#ef4444', '#f59e0b', '#f59e0b', '#22c55e', '#22c55e', '#22c55e'];
+      const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong', 'Very Strong'];
+
+      strengthBar.style.width = percentages[strength] + '%';
+      strengthBar.style.background = colors[strength];
+      strengthText.textContent = password ? texts[strength] : 'Enter a password';
+      strengthText.style.color = colors[strength];
+    }
+
+    // Phishing Quiz
+    let quizScore = 0;
+    const correctAnswers = {
+      1: 1,
+      2: 1,
+      3: 1
+    };
+
+    function selectOption(questionNum, optionIndex) {
+      const question = document.getElementById(`question${questionNum}`);
+      const options = question.querySelectorAll('.quiz-option');
+      const feedback = document.getElementById(`feedback${questionNum}`);
+      
+      options.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+      options[optionIndex].classList.add('selected');
+
+      if (optionIndex === correctAnswers[questionNum]) {
+        options[optionIndex].classList.add('correct');
+        feedback.textContent = '✅ Correct! Great spotting!';
+        feedback.className = 'quiz-feedback success';
+        quizScore++;
+      } else {
+        options[optionIndex].classList.add('incorrect');
+        options[correctAnswers[questionNum]].classList.add('correct');
+        feedback.textContent = '❌ Incorrect. The correct answer is highlighted in green.';
+        feedback.className = 'quiz-feedback error';
+      }
+
+      setTimeout(() => {
+        question.style.display = 'none';
+        const nextQuestion = document.getElementById(`question${questionNum + 1}`);
+        if (nextQuestion) {
+          nextQuestion.style.display = 'block';
+        } else {
+          showQuizScore();
+        }
+      }, 2000);
+    }
+
+    function showQuizScore() {
+      const quizScoreDiv = document.getElementById('quizScore');
+      const scoreText = document.getElementById('scoreText');
+      const badgeText = document.getElementById('badgeText');
+      
+      quizScoreDiv.style.display = 'block';
+      scoreText.textContent = `You scored ${quizScore}/3!`;
+      
+      if (quizScore === 3) {
+        badgeText.textContent = '🏆 Phishing Pro Badge Earned!';
+      } else if (quizScore === 2) {
+        badgeText.textContent = '🥈 Good effort! Keep practicing!';
+      } else {
+        badgeText.textContent = '📚 Review the topics and try again!';
+      }
+    }
+
+    function resetQuiz() {
+      quizScore = 0;
+      document.getElementById('quizScore').style.display = 'none';
+      document.getElementById('question1').style.display = 'block';
+      document.getElementById('question2').style.display = 'none';
+      document.getElementById('question3').style.display = 'none';
+      
+      [1, 2, 3].forEach(num => {
+        const feedback = document.getElementById(`feedback${num}`);
+        feedback.className = 'quiz-feedback';
+        feedback.style.display = 'none';
+        
+        const options = document.querySelectorAll(`#question${num} .quiz-option`);
+        options.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+      });
+    }
+
+    // Security Checklist Generator
+    const checklists = {
+      student: [
+        'Use strong, unique passwords for school accounts',
+        'Enable two-factor authentication on all devices',
+        'Be cautious of phishing emails pretending to be from teachers',
+        'Regularly update your phone and laptop',
+        'Think before posting on social media',
+        'Use secure Wi-Fi networks only'
+      ],
+      parent: [
+        'Set up parental controls on home devices',
+        'Have open conversations about online safety with children',
+        'Monitor children\'s online activities respectfully',
+        'Teach kids about privacy settings',
+        'Create a family digital safety agreement',
+        'Keep all family devices updated'
+      ],
+      professional: [
+        'Use a password manager for work accounts',
+        'Enable MFA on all business applications',
+        'Be vigilant about business email compromise',
+        'Secure your home office network',
+        'Regularly backup important work files',
+        'Attend cybersecurity training sessions'
+      ],
+      senior: [
+        'Never share passwords or PINs over phone/email',
+        'Verify caller identities before sharing information',
+        'Use simple but strong passwords',
+        'Keep antivirus software updated',
+        'Ask family members for help with suspicious messages',
+        'Report any suspicious activity immediately'
+      ],
+      business: [
+        'Implement employee security training',
+        'Use business-grade security software',
+        'Regular security audits and updates',
+        'Backup all critical business data',
+        'Create incident response procedures',
+        'Secure all customer data properly'
+      ]
+    };
+
+    function generateChecklist() {
+      const role = document.getElementById('userRole').value;
+      const resultDiv = document.getElementById('checklistResult');
+      const checklistItems = document.getElementById('checklistItems');
+      
+      if (!role) {
+        alert('Please select your role first!');
+        return;
+      }
+
+      const items = checklists[role];
+      checklistItems.innerHTML = '';
+      
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        checklistItems.appendChild(li);
+      });
+
+      resultDiv.style.display = 'block';
+    }
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          document.querySelector('.nav-links').classList.remove('active');
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.topic-card, .interactive-card, .resource-card, .stat-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
